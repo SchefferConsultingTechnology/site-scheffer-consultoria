@@ -12,7 +12,7 @@ import {
   Mail,
 } from "lucide-react";
 
-import logo from "@/assets/scheffer-logo.jpeg";
+import logo from "@/assets/logo_resumido.png";
 import { MobileNav } from "@/components/mobile-nav";
 import { ContactForm } from "@/components/contact-form";
 import { openCalModal } from "@/lib/open-cal-modal";
@@ -54,20 +54,31 @@ const stats = [
   { value: "24/7", label: "suporte dedicado" },
 ];
 
+const WHATSAPP_NUMBER = "5548999040445";
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.912.535 3.7 1.462 5.222L2.05 22l4.925-1.29A9.943 9.943 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12.001 2zm0 18.14a8.11 8.11 0 0 1-4.13-1.128l-.296-.176-3.07.805.82-2.994-.192-.307A8.09 8.09 0 0 1 3.86 12c0-4.487 3.653-8.14 8.14-8.14 4.487 0 8.14 3.653 8.14 8.14 0 4.487-3.653 8.14-8.14 8.14z" />
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+    </svg>
+  );
+}
+
 function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* NAV */}
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
-          <a href="#top" className="flex shrink-0 items-center gap-2.5">
+          <a href="#top" className="flex shrink-0 items-center gap-2.5 ">
             <img
               src={logo}
               alt="Scheffer Consultoria"
-              className="h-9 w-9 rounded-full object-cover ring-1 ring-border"
+              className="h-11 w-11 rounded-full object-cover ring-1 ring-border"
             />
             <span className="font-display text-base font-semibold tracking-tight">
-              Scheffer<span className="text-primary">.</span>
+              Scheffer<span className="text-primary mx-2">Consultoria</span>
             </span>
           </a>
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
@@ -152,11 +163,13 @@ function Home() {
                 <span className="text-primary">● online</span>
               </div>
               <div className="flex h-full items-center justify-center">
-                <img
-                  src={logo}
-                  alt="Logo Scheffer Consultoria"
-                  className="h-32 w-32 rounded-full object-cover shadow-[var(--shadow-elegant)] ring-1 ring-border sm:h-48 sm:w-48 lg:h-64 lg:w-64"
-                />
+                <div className="flex items-center justify-center rounded-full bg-white p-3 shadow-[var(--shadow-elegant)] sm:p-4 lg:p-5">
+                  <img
+                    src={logo}
+                    alt="Logo Scheffer Consultoria"
+                    className="h-28 w-28 object-contain sm:h-36 sm:w-36 lg:h-44 lg:w-44"
+                  />
+                </div>
               </div>
               <div className="absolute inset-x-6 bottom-6 flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-muted-foreground sm:inset-x-8 sm:bottom-8">
                 <span>Consultoria</span>
@@ -294,14 +307,23 @@ function Home() {
                 <ContactForm />
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <button
                   type="button"
                   onClick={openCalModal}
-                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:opacity-90 sm:w-auto"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-4 text-sm font-semibold text-accent-foreground transition hover:opacity-90"
                 >
                   Agendar reunião <ArrowRight className="h-4 w-4" />
                 </button>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 text-sm font-semibold text-white transition hover:bg-[#20BD5A]"
+                >
+                  <WhatsAppIcon className="h-4 w-4" />
+                  WhatsApp
+                </a>
               </div>
             </div>
           </div>

@@ -153,7 +153,11 @@ export function ContactForm() {
           </p>
         )}
 
-        <Button type="submit" disabled={status === "submitting"} className="w-full sm:w-auto">
+        <Button
+          type="submit"
+          disabled={status === "submitting"}
+          className="h-12 w-full gap-2 rounded-full px-6 text-sm font-semibold shadow-[var(--shadow-glow)] sm:w-auto"
+        >
           {status === "submitting" ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
