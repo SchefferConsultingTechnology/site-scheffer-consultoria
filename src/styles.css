@@ -42,9 +42,9 @@
   --radius: 0.75rem;
 
   /* Charcoal base */
-  --background: oklch(0.17 0 0);          /* ~#1a1a1a */
+  --background: oklch(0.17 0 0); /* ~#1a1a1a */
   --foreground: oklch(0.97 0 0);
-  --surface: oklch(0.22 0 0);              /* ~#2d2d2d */
+  --surface: oklch(0.22 0 0); /* ~#2d2d2d */
   --surface-elevated: oklch(0.26 0 0);
 
   --card: oklch(0.22 0 0);
@@ -71,7 +71,8 @@
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.7 0.19 235);
 
-  --gradient-hero: radial-gradient(
+  --gradient-hero:
+    radial-gradient(
       ellipse 80% 60% at 20% 20%,
       color-mix(in oklab, var(--primary) 35%, transparent),
       transparent 60%
@@ -81,8 +82,16 @@
       color-mix(in oklab, var(--accent) 22%, transparent),
       transparent 60%
     );
-  --gradient-primary: linear-gradient(135deg, var(--primary), color-mix(in oklab, var(--primary) 55%, var(--accent)));
-  --gradient-accent: linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent) 65%, var(--primary)));
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--primary),
+    color-mix(in oklab, var(--primary) 55%, var(--accent))
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    var(--accent),
+    color-mix(in oklab, var(--accent) 65%, var(--primary))
+  );
 
   --shadow-glow: 0 0 60px -10px color-mix(in oklab, var(--primary) 55%, transparent);
   --shadow-elegant: 0 30px 60px -20px oklch(0 0 0 / 0.5);
@@ -101,7 +110,11 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
