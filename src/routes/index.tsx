@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Code2,
@@ -16,8 +16,27 @@ import logo from "@/assets/logo_resumido.png";
 import { MobileNav } from "@/components/mobile-nav";
 import { ContactForm } from "@/components/contact-form";
 import { openCalModal } from "@/lib/open-cal-modal";
+import { SITE_NAME, SITE_OG_IMAGE, SITE_URL } from "@/lib/site-config";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: SITE_OG_IMAGE,
+  image: SITE_OG_IMAGE,
+  email: "contato@schefferconsultoria.com.br",
+  telephone: "+5548999040445",
+  areaServed: "BR",
+  description:
+    "Consultoria em soluções tecnológicas: aplicações web e mobile, marketing digital e social media.",
+};
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    links: [{ rel: "canonical", href: SITE_URL }],
+    meta: [{ property: "og:url", content: SITE_URL }, { "script:ld+json": structuredData }],
+  }),
   component: Home,
 });
 
@@ -341,9 +360,17 @@ function Home() {
             />
             <span className="font-display text-sm font-semibold">Scheffer Consultoria</span>
           </div>
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Scheffer Consultoria. Todos os direitos reservados.
-          </p>
+          <div className="flex flex-col items-center gap-1 sm:items-start">
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} Scheffer Consultoria. Todos os direitos reservados.
+            </p>
+            <Link
+              to="/politica-de-privacidade"
+              className="text-xs text-muted-foreground underline-offset-4 transition hover:text-foreground hover:underline"
+            >
+              Política de Privacidade
+            </Link>
+          </div>
           <div className="flex items-center gap-3 text-muted-foreground">
             <a href="#" aria-label="Instagram" className="transition hover:text-foreground">
               <Instagram className="h-4 w-4" />

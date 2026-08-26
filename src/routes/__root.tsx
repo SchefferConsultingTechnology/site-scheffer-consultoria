@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE_NAME, SITE_OG_IMAGE } from "../lib/site-config";
 
 function NotFoundComponent() {
   return (
@@ -82,13 +83,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Consultoria em soluções tecnológicas: aplicações web e mobile, marketing digital e social media. Anos de experiência, energia de quem começa agora.",
       },
       { name: "author", content: "Scheffer Consultoria" },
+      { name: "theme-color", content: "#1a1a1a" },
+      { property: "og:site_name", content: SITE_NAME },
       { property: "og:title", content: "Scheffer Consultoria" },
       {
         property: "og:description",
         content: "Soluções tecnológicas, web, mobile, marketing digital e social media.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:image", content: SITE_OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: SITE_OG_IMAGE },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
