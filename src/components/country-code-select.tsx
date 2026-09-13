@@ -51,7 +51,7 @@ export function CountryCodeSelect({
           role="combobox"
           aria-expanded={open}
           aria-label={triggerAriaLabel}
-          className="h-10 shrink-0 justify-between gap-1.5 px-3 font-normal"
+          className="h-9 shrink-0 justify-between gap-1.5 px-3 font-normal"
         >
           <span className="flex items-center gap-1.5">
             <span aria-hidden="true">{selected?.flag}</span>
