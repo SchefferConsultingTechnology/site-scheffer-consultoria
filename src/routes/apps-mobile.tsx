@@ -11,6 +11,7 @@ const service = services.find((s) => s.path === "/apps-mobile")!;
 const TITLE = "Apps Mobile — Scheffer Consultoria";
 const DESCRIPTION =
   "Apps nativos e híbridos para iOS e Android, do MVP à publicação nas lojas. Foco em usabilidade, performance e resultado real.";
+const OG_IMAGE = `${SITE_URL}/og-apps-mobile.png`;
 
 export const Route = createFileRoute("/apps-mobile")({
   head: () => ({
@@ -21,8 +22,12 @@ export const Route = createFileRoute("/apps-mobile")({
       { property: "og:url", content: `${SITE_URL}${service.path}` },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: OG_IMAGE },
       { "script:ld+json": buildServiceStructuredData(service) },
     ],
   }),

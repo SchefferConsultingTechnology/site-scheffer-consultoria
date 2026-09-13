@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
 });
 
 const stats = [
-  { value: "15+", label: "anos de mercado" },
+  { value: "30+", label: "anos de mercado" },
   { value: "80+", label: "projetos entregues" },
   { value: "24/7", label: "suporte dedicado" },
 ];

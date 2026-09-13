@@ -11,6 +11,7 @@ const service = services.find((s) => s.path === "/aplicacoes-web")!;
 const TITLE = "Aplicações Web — Scheffer Consultoria";
 const DESCRIPTION =
   "Desenvolvimento de aplicações web, dashboards e sites de alta performance sob medida. Arquitetura escalável, código próprio e foco em resultado.";
+const OG_IMAGE = `${SITE_URL}/og-aplicacoes-web.png`;
 
 export const Route = createFileRoute("/aplicacoes-web")({
   head: () => ({
@@ -21,8 +22,12 @@ export const Route = createFileRoute("/aplicacoes-web")({
       { property: "og:url", content: `${SITE_URL}${service.path}` },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: OG_IMAGE },
       { "script:ld+json": buildServiceStructuredData(service) },
     ],
   }),
