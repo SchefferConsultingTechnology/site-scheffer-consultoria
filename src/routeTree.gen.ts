@@ -18,6 +18,24 @@ import { Route as DigitalMarketingRouteImport } from './routes/digital-marketing
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EsIndexRouteImport } from './routes/es/index'
+import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as EsWebAppsRouteImport } from './routes/es/web-apps'
+import { Route as EsSocialMediaRouteImport } from './routes/es/social-media'
+import { Route as EsPrivacyPolicyRouteImport } from './routes/es/privacy-policy'
+import { Route as EsMobileAppsRouteImport } from './routes/es/mobile-apps'
+import { Route as EsMethodologyRouteImport } from './routes/es/methodology'
+import { Route as EsDigitalMarketingRouteImport } from './routes/es/digital-marketing'
+import { Route as EsContactRouteImport } from './routes/es/contact'
+import { Route as EsAboutRouteImport } from './routes/es/about'
+import { Route as EnWebAppsRouteImport } from './routes/en/web-apps'
+import { Route as EnSocialMediaRouteImport } from './routes/en/social-media'
+import { Route as EnPrivacyPolicyRouteImport } from './routes/en/privacy-policy'
+import { Route as EnMobileAppsRouteImport } from './routes/en/mobile-apps'
+import { Route as EnMethodologyRouteImport } from './routes/en/methodology'
+import { Route as EnDigitalMarketingRouteImport } from './routes/en/digital-marketing'
+import { Route as EnContactRouteImport } from './routes/en/contact'
+import { Route as EnAboutRouteImport } from './routes/en/about'
 
 const WebAppsRoute = WebAppsRouteImport.update({
   id: '/web-apps',
@@ -64,6 +82,96 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EsIndexRoute = EsIndexRouteImport.update({
+  id: '/es/',
+  path: '/es/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsWebAppsRoute = EsWebAppsRouteImport.update({
+  id: '/es/web-apps',
+  path: '/es/web-apps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsSocialMediaRoute = EsSocialMediaRouteImport.update({
+  id: '/es/social-media',
+  path: '/es/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsPrivacyPolicyRoute = EsPrivacyPolicyRouteImport.update({
+  id: '/es/privacy-policy',
+  path: '/es/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsMobileAppsRoute = EsMobileAppsRouteImport.update({
+  id: '/es/mobile-apps',
+  path: '/es/mobile-apps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsMethodologyRoute = EsMethodologyRouteImport.update({
+  id: '/es/methodology',
+  path: '/es/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsDigitalMarketingRoute = EsDigitalMarketingRouteImport.update({
+  id: '/es/digital-marketing',
+  path: '/es/digital-marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsContactRoute = EsContactRouteImport.update({
+  id: '/es/contact',
+  path: '/es/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsAboutRoute = EsAboutRouteImport.update({
+  id: '/es/about',
+  path: '/es/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnWebAppsRoute = EnWebAppsRouteImport.update({
+  id: '/en/web-apps',
+  path: '/en/web-apps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnSocialMediaRoute = EnSocialMediaRouteImport.update({
+  id: '/en/social-media',
+  path: '/en/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnPrivacyPolicyRoute = EnPrivacyPolicyRouteImport.update({
+  id: '/en/privacy-policy',
+  path: '/en/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnMobileAppsRoute = EnMobileAppsRouteImport.update({
+  id: '/en/mobile-apps',
+  path: '/en/mobile-apps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnMethodologyRoute = EnMethodologyRouteImport.update({
+  id: '/en/methodology',
+  path: '/en/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnDigitalMarketingRoute = EnDigitalMarketingRouteImport.update({
+  id: '/en/digital-marketing',
+  path: '/en/digital-marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnContactRoute = EnContactRouteImport.update({
+  id: '/en/contact',
+  path: '/en/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnAboutRoute = EnAboutRouteImport.update({
+  id: '/en/about',
+  path: '/en/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -75,6 +183,24 @@ export interface FileRoutesByFullPath {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/social-media': typeof SocialMediaRoute
   '/web-apps': typeof WebAppsRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/digital-marketing': typeof EnDigitalMarketingRoute
+  '/en/methodology': typeof EnMethodologyRoute
+  '/en/mobile-apps': typeof EnMobileAppsRoute
+  '/en/privacy-policy': typeof EnPrivacyPolicyRoute
+  '/en/social-media': typeof EnSocialMediaRoute
+  '/en/web-apps': typeof EnWebAppsRoute
+  '/es/about': typeof EsAboutRoute
+  '/es/contact': typeof EsContactRoute
+  '/es/digital-marketing': typeof EsDigitalMarketingRoute
+  '/es/methodology': typeof EsMethodologyRoute
+  '/es/mobile-apps': typeof EsMobileAppsRoute
+  '/es/privacy-policy': typeof EsPrivacyPolicyRoute
+  '/es/social-media': typeof EsSocialMediaRoute
+  '/es/web-apps': typeof EsWebAppsRoute
+  '/en/': typeof EnIndexRoute
+  '/es/': typeof EsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +212,24 @@ export interface FileRoutesByTo {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/social-media': typeof SocialMediaRoute
   '/web-apps': typeof WebAppsRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/digital-marketing': typeof EnDigitalMarketingRoute
+  '/en/methodology': typeof EnMethodologyRoute
+  '/en/mobile-apps': typeof EnMobileAppsRoute
+  '/en/privacy-policy': typeof EnPrivacyPolicyRoute
+  '/en/social-media': typeof EnSocialMediaRoute
+  '/en/web-apps': typeof EnWebAppsRoute
+  '/es/about': typeof EsAboutRoute
+  '/es/contact': typeof EsContactRoute
+  '/es/digital-marketing': typeof EsDigitalMarketingRoute
+  '/es/methodology': typeof EsMethodologyRoute
+  '/es/mobile-apps': typeof EsMobileAppsRoute
+  '/es/privacy-policy': typeof EsPrivacyPolicyRoute
+  '/es/social-media': typeof EsSocialMediaRoute
+  '/es/web-apps': typeof EsWebAppsRoute
+  '/en': typeof EnIndexRoute
+  '/es': typeof EsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +242,24 @@ export interface FileRoutesById {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/social-media': typeof SocialMediaRoute
   '/web-apps': typeof WebAppsRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/digital-marketing': typeof EnDigitalMarketingRoute
+  '/en/methodology': typeof EnMethodologyRoute
+  '/en/mobile-apps': typeof EnMobileAppsRoute
+  '/en/privacy-policy': typeof EnPrivacyPolicyRoute
+  '/en/social-media': typeof EnSocialMediaRoute
+  '/en/web-apps': typeof EnWebAppsRoute
+  '/es/about': typeof EsAboutRoute
+  '/es/contact': typeof EsContactRoute
+  '/es/digital-marketing': typeof EsDigitalMarketingRoute
+  '/es/methodology': typeof EsMethodologyRoute
+  '/es/mobile-apps': typeof EsMobileAppsRoute
+  '/es/privacy-policy': typeof EsPrivacyPolicyRoute
+  '/es/social-media': typeof EsSocialMediaRoute
+  '/es/web-apps': typeof EsWebAppsRoute
+  '/en/': typeof EnIndexRoute
+  '/es/': typeof EsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +273,24 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/social-media'
     | '/web-apps'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/digital-marketing'
+    | '/en/methodology'
+    | '/en/mobile-apps'
+    | '/en/privacy-policy'
+    | '/en/social-media'
+    | '/en/web-apps'
+    | '/es/about'
+    | '/es/contact'
+    | '/es/digital-marketing'
+    | '/es/methodology'
+    | '/es/mobile-apps'
+    | '/es/privacy-policy'
+    | '/es/social-media'
+    | '/es/web-apps'
+    | '/en/'
+    | '/es/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +302,24 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/social-media'
     | '/web-apps'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/digital-marketing'
+    | '/en/methodology'
+    | '/en/mobile-apps'
+    | '/en/privacy-policy'
+    | '/en/social-media'
+    | '/en/web-apps'
+    | '/es/about'
+    | '/es/contact'
+    | '/es/digital-marketing'
+    | '/es/methodology'
+    | '/es/mobile-apps'
+    | '/es/privacy-policy'
+    | '/es/social-media'
+    | '/es/web-apps'
+    | '/en'
+    | '/es'
   id:
     | '__root__'
     | '/'
@@ -133,6 +331,24 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/social-media'
     | '/web-apps'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/digital-marketing'
+    | '/en/methodology'
+    | '/en/mobile-apps'
+    | '/en/privacy-policy'
+    | '/en/social-media'
+    | '/en/web-apps'
+    | '/es/about'
+    | '/es/contact'
+    | '/es/digital-marketing'
+    | '/es/methodology'
+    | '/es/mobile-apps'
+    | '/es/privacy-policy'
+    | '/es/social-media'
+    | '/es/web-apps'
+    | '/en/'
+    | '/es/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +361,24 @@ export interface RootRouteChildren {
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SocialMediaRoute: typeof SocialMediaRoute
   WebAppsRoute: typeof WebAppsRoute
+  EnAboutRoute: typeof EnAboutRoute
+  EnContactRoute: typeof EnContactRoute
+  EnDigitalMarketingRoute: typeof EnDigitalMarketingRoute
+  EnMethodologyRoute: typeof EnMethodologyRoute
+  EnMobileAppsRoute: typeof EnMobileAppsRoute
+  EnPrivacyPolicyRoute: typeof EnPrivacyPolicyRoute
+  EnSocialMediaRoute: typeof EnSocialMediaRoute
+  EnWebAppsRoute: typeof EnWebAppsRoute
+  EsAboutRoute: typeof EsAboutRoute
+  EsContactRoute: typeof EsContactRoute
+  EsDigitalMarketingRoute: typeof EsDigitalMarketingRoute
+  EsMethodologyRoute: typeof EsMethodologyRoute
+  EsMobileAppsRoute: typeof EsMobileAppsRoute
+  EsPrivacyPolicyRoute: typeof EsPrivacyPolicyRoute
+  EsSocialMediaRoute: typeof EsSocialMediaRoute
+  EsWebAppsRoute: typeof EsWebAppsRoute
+  EnIndexRoute: typeof EnIndexRoute
+  EsIndexRoute: typeof EsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +446,132 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/es/': {
+      id: '/es/'
+      path: '/es'
+      fullPath: '/es/'
+      preLoaderRoute: typeof EsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/web-apps': {
+      id: '/es/web-apps'
+      path: '/es/web-apps'
+      fullPath: '/es/web-apps'
+      preLoaderRoute: typeof EsWebAppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/social-media': {
+      id: '/es/social-media'
+      path: '/es/social-media'
+      fullPath: '/es/social-media'
+      preLoaderRoute: typeof EsSocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/privacy-policy': {
+      id: '/es/privacy-policy'
+      path: '/es/privacy-policy'
+      fullPath: '/es/privacy-policy'
+      preLoaderRoute: typeof EsPrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/mobile-apps': {
+      id: '/es/mobile-apps'
+      path: '/es/mobile-apps'
+      fullPath: '/es/mobile-apps'
+      preLoaderRoute: typeof EsMobileAppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/methodology': {
+      id: '/es/methodology'
+      path: '/es/methodology'
+      fullPath: '/es/methodology'
+      preLoaderRoute: typeof EsMethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/digital-marketing': {
+      id: '/es/digital-marketing'
+      path: '/es/digital-marketing'
+      fullPath: '/es/digital-marketing'
+      preLoaderRoute: typeof EsDigitalMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/contact': {
+      id: '/es/contact'
+      path: '/es/contact'
+      fullPath: '/es/contact'
+      preLoaderRoute: typeof EsContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/about': {
+      id: '/es/about'
+      path: '/es/about'
+      fullPath: '/es/about'
+      preLoaderRoute: typeof EsAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/web-apps': {
+      id: '/en/web-apps'
+      path: '/en/web-apps'
+      fullPath: '/en/web-apps'
+      preLoaderRoute: typeof EnWebAppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/social-media': {
+      id: '/en/social-media'
+      path: '/en/social-media'
+      fullPath: '/en/social-media'
+      preLoaderRoute: typeof EnSocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/privacy-policy': {
+      id: '/en/privacy-policy'
+      path: '/en/privacy-policy'
+      fullPath: '/en/privacy-policy'
+      preLoaderRoute: typeof EnPrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/mobile-apps': {
+      id: '/en/mobile-apps'
+      path: '/en/mobile-apps'
+      fullPath: '/en/mobile-apps'
+      preLoaderRoute: typeof EnMobileAppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/methodology': {
+      id: '/en/methodology'
+      path: '/en/methodology'
+      fullPath: '/en/methodology'
+      preLoaderRoute: typeof EnMethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/digital-marketing': {
+      id: '/en/digital-marketing'
+      path: '/en/digital-marketing'
+      fullPath: '/en/digital-marketing'
+      preLoaderRoute: typeof EnDigitalMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/contact': {
+      id: '/en/contact'
+      path: '/en/contact'
+      fullPath: '/en/contact'
+      preLoaderRoute: typeof EnContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/about': {
+      id: '/en/about'
+      path: '/en/about'
+      fullPath: '/en/about'
+      preLoaderRoute: typeof EnAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -225,6 +585,24 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SocialMediaRoute: SocialMediaRoute,
   WebAppsRoute: WebAppsRoute,
+  EnAboutRoute: EnAboutRoute,
+  EnContactRoute: EnContactRoute,
+  EnDigitalMarketingRoute: EnDigitalMarketingRoute,
+  EnMethodologyRoute: EnMethodologyRoute,
+  EnMobileAppsRoute: EnMobileAppsRoute,
+  EnPrivacyPolicyRoute: EnPrivacyPolicyRoute,
+  EnSocialMediaRoute: EnSocialMediaRoute,
+  EnWebAppsRoute: EnWebAppsRoute,
+  EsAboutRoute: EsAboutRoute,
+  EsContactRoute: EsContactRoute,
+  EsDigitalMarketingRoute: EsDigitalMarketingRoute,
+  EsMethodologyRoute: EsMethodologyRoute,
+  EsMobileAppsRoute: EsMobileAppsRoute,
+  EsPrivacyPolicyRoute: EsPrivacyPolicyRoute,
+  EsSocialMediaRoute: EsSocialMediaRoute,
+  EsWebAppsRoute: EsWebAppsRoute,
+  EnIndexRoute: EnIndexRoute,
+  EsIndexRoute: EsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

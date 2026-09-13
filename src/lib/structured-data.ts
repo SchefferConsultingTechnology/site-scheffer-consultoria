@@ -1,10 +1,17 @@
 import { services, type Service } from "@/lib/services-data";
 import { SITE_NAME, SITE_OG_IMAGE, SITE_URL, SOCIAL_LINKS } from "@/lib/site-config";
+import { DEFAULT_LOCALE, PAGE_PATHS, SERVICE_ID_TO_PAGE_KEY, type Locale } from "@/content/locale";
 
 const COMPANY_EMAIL = "contato@schefferconsultoria.com.br";
 const COMPANY_PHONE = "+5548999040445";
 
-export function buildBusinessStructuredData() {
+const BUSINESS_DESCRIPTION: Record<Locale, string> = {
+  pt: "Consultoria em soluções tecnológicas: aplicações web e mobile, marketing digital e social media.",
+  en: "Technology consulting: web and mobile applications, digital marketing, and social media.",
+  es: "Consultoría en soluciones tecnológicas: aplicaciones web y móviles, marketing digital y redes sociales.",
+};
+
+export function buildBusinessStructuredData(locale: Locale = DEFAULT_LOCALE) {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -15,8 +22,7 @@ export function buildBusinessStructuredData() {
     email: COMPANY_EMAIL,
     telephone: COMPANY_PHONE,
     areaServed: "BR",
-    description:
-      "Consultoria em soluções tecnológicas: aplicações web e mobile, marketing digital e social media.",
+    description: BUSINESS_DESCRIPTION[locale],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Serviços",
@@ -24,9 +30,9 @@ export function buildBusinessStructuredData() {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: service.title,
-          description: service.desc,
-          url: `${SITE_URL}${service.path}`,
+          name: service.title[locale],
+          description: service.desc[locale],
+          url: `${SITE_URL}${PAGE_PATHS[SERVICE_ID_TO_PAGE_KEY[service.id]][locale]}`,
         },
       })),
     },
@@ -34,12 +40,12 @@ export function buildBusinessStructuredData() {
   };
 }
 
-export function buildServiceStructuredData(service: Service) {
+export function buildServiceStructuredData(service: Service, locale: Locale = DEFAULT_LOCALE) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: service.title,
-    description: service.summary,
+    name: service.title[locale],
+    description: service.summary[locale],
     areaServed: "BR",
     provider: {
       "@type": "ProfessionalService",

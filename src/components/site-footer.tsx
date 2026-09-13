@@ -3,6 +3,8 @@ import { Instagram, Linkedin, Mail } from "lucide-react";
 
 import logo from "@/assets/logo.webp";
 import { SOCIAL_LINKS } from "@/lib/site-config";
+import { commonContent } from "@/content/common";
+import { PAGE_PATHS, type Locale } from "@/content/locale";
 
 const NETWORK_ICON = {
   instagram: Instagram,
@@ -14,7 +16,9 @@ const NETWORK_LABEL = {
   linkedin: "LinkedIn",
 } as const;
 
-export function SiteFooter() {
+export function SiteFooter({ locale }: { locale: Locale }) {
+  const t = commonContent[locale];
+
   return (
     <footer className="border-t border-border/60 py-10">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6">
@@ -31,13 +35,13 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-col items-center gap-1 sm:items-start">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Scheffer Consultoria. Todos os direitos reservados.
+            © {new Date().getFullYear()} {t.footer.copyrightSuffix}
           </p>
           <Link
-            to="/privacy-policy"
+            to={PAGE_PATHS.privacyPolicy[locale]}
             className="text-xs text-muted-foreground underline-offset-4 transition hover:text-foreground hover:underline"
           >
-            Política de Privacidade
+            {t.footer.privacyPolicy}
           </Link>
         </div>
         <div className="flex items-center gap-3 text-muted-foreground">
@@ -56,7 +60,11 @@ export function SiteFooter() {
               </a>
             );
           })}
-          <Link to="/contact" aria-label="Contato" className="transition hover:text-foreground">
+          <Link
+            to={PAGE_PATHS.contact[locale]}
+            aria-label={t.nav.contact}
+            className="transition hover:text-foreground"
+          >
             <Mail className="h-4 w-4" />
           </Link>
         </div>

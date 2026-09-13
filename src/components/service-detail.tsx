@@ -1,6 +1,7 @@
 import type { Service } from "@/lib/services-data";
+import type { Locale } from "@/content/locale";
 
-function ServiceVisual({ service }: { service: Service }) {
+function ServiceVisual({ service, locale }: { service: Service; locale: Locale }) {
   return (
     <div className="relative flex items-center justify-center">
       <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-primary/20 via-transparent to-accent/20 blur-2xl" />
@@ -18,15 +19,15 @@ function ServiceVisual({ service }: { service: Service }) {
           </div>
         </div>
         <div className="absolute inset-x-6 bottom-6 flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-muted-foreground sm:inset-x-8 sm:bottom-8">
-          <span>{service.title}</span>
-          <span>{service.tag}</span>
+          <span>{service.title[locale]}</span>
+          <span>{service.tag[locale]}</span>
         </div>
       </div>
     </div>
   );
 }
 
-export function ServiceDetail({ service }: { service: Service }) {
+export function ServiceDetail({ service, locale }: { service: Service; locale: Locale }) {
   return (
     <section className="relative border-t border-border/60 py-20">
       <div className="mx-auto grid max-w-5xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
@@ -35,16 +36,18 @@ export function ServiceDetail({ service }: { service: Service }) {
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/30">
               <service.icon className="h-5 w-5" />
             </div>
-            <p className="text-xs uppercase tracking-[0.3em] text-accent">{service.title}</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-accent">
+              {service.title[locale]}
+            </p>
           </div>
           <h1 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            {service.headline}
+            {service.headline[locale]}
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            {service.summary}
+            {service.summary[locale]}
           </p>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {service.bullets.map((bullet) => (
+            {service.bullets[locale].map((bullet) => (
               <li key={bullet} className="flex items-start gap-3">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                 <span className="text-sm text-foreground/90">{bullet}</span>
@@ -52,7 +55,7 @@ export function ServiceDetail({ service }: { service: Service }) {
             ))}
           </ul>
         </div>
-        <ServiceVisual service={service} />
+        <ServiceVisual service={service} locale={locale} />
       </div>
     </section>
   );

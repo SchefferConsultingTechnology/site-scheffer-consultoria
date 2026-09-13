@@ -16,21 +16,25 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
-  contactSchema,
+  buildContactSchema,
   formatBrazilPhone,
-  SERVICE_INTERESTS,
+  SERVICE_INTEREST_IDS,
   type ContactFormValues,
 } from "@/lib/contact-schema";
 import { sendContactEmail } from "@/lib/send-contact-email.server";
+import { contactContent } from "@/content/contact";
+import type { Locale } from "@/content/locale";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function ContactForm() {
+export function ContactForm({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<Status>("idle");
   const renderedAt = useState(() => Date.now())[0];
+  const t = contactContent[locale].form;
+  const pageT = contactContent[locale].page;
 
   const form = useForm<ContactFormValues>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(buildContactSchema(locale)),
     defaultValues: {
       name: "",
       email: "",
@@ -41,6 +45,7 @@ export function ContactForm() {
       message: "",
       honeypot: "",
       renderedAt,
+      locale,
     },
   });
 
@@ -49,7 +54,7 @@ export function ContactForm() {
   async function onSubmit(values: ContactFormValues) {
     setStatus("submitting");
     try {
-      const result = await sendContactEmail({ data: { ...values, renderedAt } });
+      const result = await sendContactEmail({ data: { ...values, renderedAt, locale } });
       if (result.ok) {
         setStatus("success");
       } else {
@@ -64,7 +69,7 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div className="rounded-2xl border border-border bg-background/50 p-6 text-sm text-foreground">
-        Mensagem enviada! Respondemos em até 24 horas.
+        {pageT.successMessage}
       </div>
     );
   }
@@ -87,9 +92,9 @@ export function ContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nome</FormLabel>
+                <FormLabel>{t.nameLabel}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Seu nome" {...field} />
+                  <Input placeholder={t.namePlaceholder} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -100,9 +105,9 @@ export function ContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>E-mail</FormLabel>
+                <FormLabel>{t.emailLabel}</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="voce@empresa.com" {...field} />
+                  <Input type="email" placeholder={t.emailPlaceholder} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -115,7 +120,7 @@ export function ContactForm() {
           name="interests"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Assunto (opcional, selecione um ou mais)</FormLabel>
+              <FormLabel>{t.interestsLabel}</FormLabel>
               <FormControl>
                 <ToggleGroup
                   type="multiple"
@@ -124,11 +129,11 @@ export function ContactForm() {
                   value={field.value}
                   onValueChange={field.onChange}
                   className="flex-wrap justify-start"
-                  aria-label="Sobre o que você quer falar?"
+                  aria-label={t.interestsAriaLabel}
                 >
-                  {SERVICE_INTERESTS.map((interest) => (
-                    <ToggleGroupItem key={interest.id} value={interest.id}>
-                      {interest.label}
+                  {SERVICE_INTEREST_IDS.map((id) => (
+                    <ToggleGroupItem key={id} value={id}>
+                      {t.interests[id]}
                     </ToggleGroupItem>
                   ))}
                 </ToggleGroup>
@@ -144,12 +149,12 @@ export function ContactForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Telefone (opcional)</FormLabel>
+                <FormLabel>{t.phoneLabel}</FormLabel>
                 <FormControl>
                   <Input
                     type="tel"
                     inputMode="numeric"
-                    placeholder="(00) 00000-0000"
+                    placeholder={t.phonePlaceholder}
                     {...field}
                     onChange={(e) => field.onChange(formatBrazilPhone(e.target.value))}
                   />
@@ -166,13 +171,13 @@ export function ContactForm() {
                         value={channelsField.value}
                         onValueChange={channelsField.onChange}
                         className="justify-start"
-                        aria-label="Esse telefone é WhatsApp ou Telegram?"
+                        aria-label={t.phoneChannelsAriaLabel}
                       >
-                        <ToggleGroupItem value="whatsapp" aria-label="É WhatsApp">
-                          WhatsApp
+                        <ToggleGroupItem value="whatsapp" aria-label={t.whatsappChannelLabel}>
+                          {t.whatsappChannelLabel}
                         </ToggleGroupItem>
-                        <ToggleGroupItem value="telegram" aria-label="É Telegram">
-                          Telegram
+                        <ToggleGroupItem value="telegram" aria-label={t.telegramChannelLabel}>
+                          {t.telegramChannelLabel}
                         </ToggleGroupItem>
                       </ToggleGroup>
                     )}
@@ -187,9 +192,9 @@ export function ContactForm() {
             name="company"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Empresa (opcional)</FormLabel>
+                <FormLabel>{t.companyLabel}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Nome da empresa" {...field} />
+                  <Input placeholder={t.companyPlaceholder} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -202,9 +207,9 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Mensagem</FormLabel>
+              <FormLabel>{t.messageLabel}</FormLabel>
               <FormControl>
-                <Textarea rows={4} placeholder="Conte um pouco sobre o seu projeto" {...field} />
+                <Textarea rows={4} placeholder={t.messagePlaceholder} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -213,11 +218,7 @@ export function ContactForm() {
 
         {status === "error" && (
           <p className="text-sm text-destructive" role="alert">
-            Não foi possível enviar sua mensagem agora. Tente novamente ou escreva para{" "}
-            <a href="mailto:contato@schefferconsultoria.com.br" className="underline">
-              contato@schefferconsultoria.com.br
-            </a>
-            .
+            {pageT.errorMessage}
           </p>
         )}
 
@@ -231,7 +232,7 @@ export function ContactForm() {
           ) : (
             <Send className="h-4 w-4" />
           )}
-          Enviar mensagem
+          {t.submitButton}
         </Button>
       </form>
     </Form>

@@ -1,7 +1,12 @@
 import { z } from "zod";
 
+import { contactContent, SERVICE_INTEREST_IDS, type ServiceInterestId } from "@/content/contact";
+import { LOCALES, type Locale } from "@/content/locale";
+
 // Brazilian numbers: 2-digit DDD + 8 digits (landline) or 9 digits (mobile) = 10-11 digits,
-// optionally prefixed with the "55" country code.
+// optionally prefixed with the "55" country code. This validation rule is intentionally
+// Brazil-specific regardless of the form's display language (see spec 005-i18n-structure —
+// i18n translates messages, it doesn't change validation scope, which stays Brazil-only for now).
 export function brazilPhoneDigits(value: string) {
   const digits = value.replace(/\D/g, "");
   return digits.length > 11 && digits.startsWith("55") ? digits.slice(2) : digits;
@@ -23,40 +28,33 @@ export function formatBrazilPhone(value: string) {
 export const PHONE_CHANNELS = ["whatsapp", "telegram"] as const;
 export type PhoneChannel = (typeof PHONE_CHANNELS)[number];
 
-const SERVICE_INTEREST_IDS = ["web", "mobile", "marketing", "social", "other"] as const;
-export const SERVICE_INTERESTS: { id: (typeof SERVICE_INTEREST_IDS)[number]; label: string }[] = [
-  { id: "web", label: "Aplicações Web" },
-  { id: "mobile", label: "Apps Mobile" },
-  { id: "marketing", label: "Marketing Digital" },
-  { id: "social", label: "Social Media" },
-  { id: "other", label: "Outros assuntos" },
-];
-export type ServiceInterest = (typeof SERVICE_INTEREST_IDS)[number];
+export { SERVICE_INTEREST_IDS, type ServiceInterestId };
 
-export const contactSchema = z.object({
-  name: z.string().trim().min(2, "Informe seu nome completo.").max(100),
-  email: z.string().trim().email("Informe um e-mail válido."),
-  phone: z
-    .string()
-    .trim()
-    .max(20)
-    .optional()
-    .or(z.literal(""))
-    .refine((value) => {
-      if (!value) return true;
-      const digits = brazilPhoneDigits(value);
-      return digits.length === 10 || digits.length === 11;
-    }, "Informe um telefone brasileiro válido, com DDD (10 ou 11 dígitos)."),
-  phoneChannels: z.array(z.enum(PHONE_CHANNELS)).max(PHONE_CHANNELS.length).optional(),
-  interests: z.array(z.enum(SERVICE_INTEREST_IDS)).max(SERVICE_INTEREST_IDS.length).optional(),
-  company: z.string().trim().max(100).optional().or(z.literal("")),
-  message: z
-    .string()
-    .trim()
-    .min(10, "Conte um pouco mais sobre o seu projeto.")
-    .max(2000, "Mensagem muito longa."),
-  honeypot: z.string().max(0).optional().or(z.literal("")),
-  renderedAt: z.number(),
-});
+export function buildContactSchema(locale: Locale) {
+  const messages = contactContent[locale].form.validation;
 
-export type ContactFormValues = z.infer<typeof contactSchema>;
+  return z.object({
+    name: z.string().trim().min(2, messages.nameRequired).max(100),
+    email: z.string().trim().email(messages.emailInvalid),
+    phone: z
+      .string()
+      .trim()
+      .max(20)
+      .optional()
+      .or(z.literal(""))
+      .refine((value) => {
+        if (!value) return true;
+        const digits = brazilPhoneDigits(value);
+        return digits.length === 10 || digits.length === 11;
+      }, messages.phoneInvalid),
+    phoneChannels: z.array(z.enum(PHONE_CHANNELS)).max(PHONE_CHANNELS.length).optional(),
+    interests: z.array(z.enum(SERVICE_INTEREST_IDS)).max(SERVICE_INTEREST_IDS.length).optional(),
+    company: z.string().trim().max(100).optional().or(z.literal("")),
+    message: z.string().trim().min(10, messages.messageTooShort).max(2000, messages.messageTooLong),
+    honeypot: z.string().max(0).optional().or(z.literal("")),
+    renderedAt: z.number(),
+    locale: z.enum(LOCALES),
+  });
+}
+
+export type ContactFormValues = z.infer<ReturnType<typeof buildContactSchema>>;

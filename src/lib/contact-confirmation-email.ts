@@ -1,15 +1,12 @@
-import { SERVICE_INTERESTS, type ContactFormValues } from "@/lib/contact-schema";
+import type { ContactFormValues } from "@/lib/contact-schema";
 import { CAL_LINK } from "@/lib/open-cal-modal";
 import { SITE_OG_IMAGE } from "@/lib/site-config";
+import { contactContent } from "@/content/contact";
+import type { Locale } from "@/content/locale";
 
 const WHATSAPP_NUMBER = "5548999040445";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 const CAL_BOOKING_URL = `https://cal.com/${CAL_LINK}`;
-
-const PHONE_CHANNEL_LABELS: Record<string, string> = { whatsapp: "WhatsApp", telegram: "Telegram" };
-const INTEREST_LABELS: Record<string, string> = Object.fromEntries(
-  SERVICE_INTERESTS.map((interest) => [interest.id, interest.label]),
-);
 
 type ConfirmationData = Pick<
   ContactFormValues,
@@ -24,21 +21,29 @@ function escapeHtml(value: string) {
     .replace(/"/g, "&quot;");
 }
 
-export function buildContactConfirmationEmail(data: ConfirmationData) {
+export function buildContactConfirmationEmail(locale: Locale, data: ConfirmationData) {
+  const t = contactContent[locale];
   const firstName = data.name.trim().split(/\s+/)[0];
-  const subject = `Recebemos sua mensagem, ${firstName}! — Scheffer Consultoria`;
+  const subject = t.email.subjectTemplate.replace("{name}", firstName);
+  const heading = t.email.heading.replace("{name}", firstName);
 
+  const phoneChannelLabels: Record<string, string> = {
+    whatsapp: t.form.whatsappChannelLabel,
+    telegram: t.form.telegramChannelLabel,
+  };
   const phoneChannelsText = data.phoneChannels?.length
-    ? ` (${data.phoneChannels.map((channel) => PHONE_CHANNEL_LABELS[channel]).join(" / ")})`
+    ? ` (${data.phoneChannels.map((channel) => phoneChannelLabels[channel]).join(" / ")})`
     : "";
   const interestsText = data.interests?.length
-    ? data.interests.map((interest) => INTEREST_LABELS[interest]).join(", ")
+    ? data.interests.map((interest) => t.form.interests[interest]).join(", ")
     : null;
 
   const summaryRows = [
-    data.company ? { label: "Empresa", value: data.company } : null,
-    data.phone ? { label: "Telefone", value: `${data.phone}${phoneChannelsText}` } : null,
-    interestsText ? { label: "Assunto", value: interestsText } : null,
+    data.company ? { label: t.email.summaryLabelCompany, value: data.company } : null,
+    data.phone
+      ? { label: t.email.summaryLabelPhone, value: `${data.phone}${phoneChannelsText}` }
+      : null,
+    interestsText ? { label: t.email.summaryLabelSubject, value: interestsText } : null,
   ].filter((row): row is { label: string; value: string } => row !== null);
 
   const summaryRowsHtml = summaryRows
@@ -52,7 +57,7 @@ export function buildContactConfirmationEmail(data: ConfirmationData) {
     .join("");
 
   const html = `<!doctype html>
-<html lang="pt-BR">
+<html lang="${locale}">
   <body style="margin:0;padding:0;background-color:#f4f4f5;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f5;padding:32px 16px;">
       <tr>
@@ -74,33 +79,32 @@ export function buildContactConfirmationEmail(data: ConfirmationData) {
             </tr>
             <tr>
               <td style="padding:32px;">
-                <h1 style="margin:0 0 12px;font-size:22px;color:#18181b;">Recebemos sua mensagem, ${escapeHtml(firstName)}!</h1>
+                <h1 style="margin:0 0 12px;font-size:22px;color:#18181b;">${escapeHtml(heading)}</h1>
                 <p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:#3f3f46;">
-                  Obrigado por entrar em contato. Nossa equipe vai analisar o que você enviou e
-                  responder em até <strong>24 horas</strong>.
+                  ${t.email.body}
                 </p>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f5;border-radius:12px;padding:16px;margin-bottom:20px;">
                   <tr>
                     <td style="padding:0 0 8px;">
                       ${summaryRowsHtml ? `<table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin-bottom:8px;">${summaryRowsHtml}</table>` : ""}
-                      <p style="margin:0;font-size:13px;color:#71717a;">Mensagem enviada</p>
+                      <p style="margin:0;font-size:13px;color:#71717a;">${t.email.summaryMessageLabel}</p>
                       <p style="margin:4px 0 0;font-size:14px;color:#18181b;white-space:pre-wrap;">${escapeHtml(data.message)}</p>
                     </td>
                   </tr>
                 </table>
                 <p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:#3f3f46;">
-                  Se preferir um retorno mais rápido enquanto isso, fale com a gente agora:
+                  ${t.email.ctaText}
                 </p>
                 <table role="presentation" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">
                   <tr>
                     <td style="padding-right:8px;padding-bottom:12px;">
                       <a href="${WHATSAPP_URL}" style="display:inline-block;background-color:#25D366;color:#ffffff;text-decoration:none;font-size:14px;font-weight:600;padding:12px 20px;border-radius:999px;">
-                        WhatsApp
+                        ${t.email.whatsappButton}
                       </a>
                     </td>
                     <td style="padding-bottom:12px;">
                       <a href="${CAL_BOOKING_URL}" style="display:inline-block;background-color:#fcd863;color:#18181b;text-decoration:none;font-size:14px;font-weight:600;padding:12px 20px;border-radius:999px;">
-                        Agendar reunião
+                        ${t.email.scheduleButton}
                       </a>
                     </td>
                   </tr>
@@ -110,7 +114,7 @@ export function buildContactConfirmationEmail(data: ConfirmationData) {
             <tr>
               <td style="padding:20px 32px;background-color:#f4f4f5;">
                 <p style="margin:0;font-size:12px;color:#a1a1aa;">
-                  Scheffer Consultoria — este é um e-mail automático de confirmação, não é necessário responder.
+                  ${t.email.footerNote}
                 </p>
               </td>
             </tr>

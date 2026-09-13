@@ -1,8 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { Resend } from "resend";
 
-import { contactSchema, SERVICE_INTERESTS } from "@/lib/contact-schema";
+import { buildContactSchema } from "@/lib/contact-schema";
 import { buildContactConfirmationEmail } from "@/lib/contact-confirmation-email";
+import { DEFAULT_LOCALE } from "@/content/locale";
 
 // TODO: point back to contato@schefferconsultoria.com.br once that inbox is ready.
 const COMPANY_EMAIL = "scheffer.consulting.technology@gmail.com";
@@ -11,7 +12,7 @@ const MIN_SUBMIT_TIME_MS = 2000;
 type SendContactEmailResult = { ok: true } | { ok: false; error: "validation" | "delivery_failed" };
 
 export const sendContactEmail = createServerFn({ method: "POST" })
-  .validator((data: unknown) => contactSchema.parse(data))
+  .validator((data: unknown) => buildContactSchema(DEFAULT_LOCALE).parse(data))
   .handler(async ({ data }): Promise<SendContactEmailResult> => {
     const isSpam = data.honeypot || Date.now() - data.renderedAt < MIN_SUBMIT_TIME_MS;
     if (isSpam) {
@@ -28,24 +29,31 @@ export const sendContactEmail = createServerFn({ method: "POST" })
       const fromAddress =
         process.env.RESEND_FROM_EMAIL || "Site Scheffer Consultoria <onboarding@resend.dev>";
       const resend = new Resend(apiKey);
+
       const channelLabels: Record<string, string> = { whatsapp: "WhatsApp", telegram: "Telegram" };
       const phoneChannelsText = data.phoneChannels?.length
         ? ` (${data.phoneChannels.map((channel) => channelLabels[channel]).join(" / ")})`
         : "";
-
-      const interestLabels: Record<string, string> = Object.fromEntries(
-        SERVICE_INTERESTS.map((interest) => [interest.id, interest.label]),
-      );
+      const interestLabels: Record<string, string> = {
+        web: "Aplicações Web",
+        mobile: "Apps Mobile",
+        marketing: "Marketing Digital",
+        social: "Social Media",
+        other: "Outros assuntos",
+      };
       const interestsText = data.interests?.length
         ? data.interests.map((interest) => interestLabels[interest]).join(", ")
         : null;
 
+      // The company-facing notification always stays in Portuguese (internal team's language),
+      // regardless of which language the visitor submitted the form in.
       const lines = [
         `Nome: ${data.name}`,
         `E-mail: ${data.email}`,
         data.phone ? `Telefone: ${data.phone}${phoneChannelsText}` : null,
         data.company ? `Empresa: ${data.company}` : null,
         interestsText ? `Assunto: ${interestsText}` : null,
+        `Idioma da página: ${data.locale}`,
         "",
         data.message,
       ].filter((line) => line !== null);
@@ -64,9 +72,10 @@ export const sendContactEmail = createServerFn({ method: "POST" })
       }
 
       // Best-effort: the visitor already sees the on-page success confirmation, so a failure
-      // here shouldn't turn a successful submission into an error for them.
+      // here shouldn't turn a successful submission into an error for them. Sent in the same
+      // language as the page the visitor submitted from (spec FR-011).
       try {
-        const confirmation = buildContactConfirmationEmail(data);
+        const confirmation = buildContactConfirmationEmail(data.locale, data);
         const { error: confirmationError } = await resend.emails.send({
           from: fromAddress,
           to: data.email,
