@@ -4,12 +4,12 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SITE_URL } from "@/lib/site-config";
 
-const PAGE_URL = `${SITE_URL}/processo`;
-const TITLE = "Processo — Scheffer Consultoria";
+const PAGE_URL = `${SITE_URL}/methodology`;
+const TITLE = "Metodologia — Scheffer Consultoria";
 const DESCRIPTION =
   "Veja como trabalhamos: descoberta, estratégia, execução e crescimento — um processo enxuto e transparente do diagnóstico ao resultado.";
 
-export const Route = createFileRoute("/processo")({
+export const Route = createFileRoute("/methodology")({
   head: () => ({
     links: [{ rel: "canonical", href: PAGE_URL }],
     meta: [
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/processo")({
       { name: "twitter:description", content: DESCRIPTION },
     ],
   }),
-  component: Processo,
+  component: Methodology,
 });
 
 const STEPS = [
@@ -48,7 +48,7 @@ const STEPS = [
   },
 ];
 
-function Processo() {
+function Methodology() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

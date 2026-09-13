@@ -14,8 +14,8 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    id: "servico-web",
-    path: "/aplicacoes-web",
+    id: "web",
+    path: "/web-apps",
     icon: Code2,
     title: "Aplicações Web",
     desc: "Plataformas, dashboards e sites de alta performance sob medida para o seu negócio.",
@@ -31,8 +31,8 @@ export const services: Service[] = [
     ],
   },
   {
-    id: "servico-mobile",
-    path: "/apps-mobile",
+    id: "mobile",
+    path: "/mobile-apps",
     icon: Smartphone,
     title: "Apps Mobile",
     desc: "Experiências nativas e híbridas para iOS e Android, com foco em usabilidade.",
@@ -48,8 +48,8 @@ export const services: Service[] = [
     ],
   },
   {
-    id: "servico-marketing",
-    path: "/marketing-digital",
+    id: "marketing",
+    path: "/digital-marketing",
     icon: Megaphone,
     title: "Marketing Digital",
     desc: "Estratégia, tráfego pago e SEO para transformar cliques em clientes.",
@@ -65,7 +65,7 @@ export const services: Service[] = [
     ],
   },
   {
-    id: "servico-social",
+    id: "social",
     path: "/social-media",
     icon: Share2,
     title: "Social Media",

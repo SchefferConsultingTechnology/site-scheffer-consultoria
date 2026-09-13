@@ -21,22 +21,22 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <Link to="/" hash="servicos" className="transition hover:text-foreground">
+          <Link to="/" hash="services" className="transition hover:text-foreground">
             Serviços
           </Link>
-          <Link to="/sobre" className="transition hover:text-foreground">
+          <Link to="/about" className="transition hover:text-foreground">
             Sobre
           </Link>
-          <Link to="/processo" className="transition hover:text-foreground">
+          <Link to="/methodology" className="transition hover:text-foreground">
             Metodologia
           </Link>
-          <Link to="/contato" className="transition hover:text-foreground">
+          <Link to="/contact" className="transition hover:text-foreground">
             Contato
           </Link>
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <Link
-            to="/contato"
+            to="/contact"
             className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary px-3 sm:px-4 text-sm font-medium text-primary-foreground shadow-[0_0_30px_-8px_var(--color-primary)] transition hover:opacity-90"
           >
             <span className="hidden sm:inline">Falar agora</span>{" "}

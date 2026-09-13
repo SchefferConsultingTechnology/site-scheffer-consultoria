@@ -2,49 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://scheffer.solutions/</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://scheffer.solutions/aplicacoes-web</loc>
-    <lastmod>2026-09-12</lastmod>
+    <loc>https://scheffer.solutions/web-apps</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scheffer.solutions/apps-mobile</loc>
-    <lastmod>2026-09-12</lastmod>
+    <loc>https://scheffer.solutions/mobile-apps</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scheffer.solutions/marketing-digital</loc>
-    <lastmod>2026-09-12</lastmod>
+    <loc>https://scheffer.solutions/digital-marketing</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://scheffer.solutions/social-media</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scheffer.solutions/sobre</loc>
-    <lastmod>2026-09-12</lastmod>
+    <loc>https://scheffer.solutions/about</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://scheffer.solutions/processo</loc>
-    <lastmod>2026-09-12</lastmod>
+    <loc>https://scheffer.solutions/methodology</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://scheffer.solutions/contato</loc>
-    <lastmod>2026-09-12</lastmod>
+    <loc>https://scheffer.solutions/contact</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

@@ -2,11 +2,11 @@
 // can only be resolved client-side, after the browser has already loaded `/` and parsed the hash.
 export const LEGACY_ANCHOR_REDIRECTS: Record<string, string> = {
   servicos: "/",
-  sobre: "/sobre",
-  processo: "/processo",
-  contato: "/contato",
-  "servico-web": "/aplicacoes-web",
-  "servico-mobile": "/apps-mobile",
-  "servico-marketing": "/marketing-digital",
+  sobre: "/about",
+  processo: "/methodology",
+  contato: "/contact",
+  "servico-web": "/web-apps",
+  "servico-mobile": "/mobile-apps",
+  "servico-marketing": "/digital-marketing",
   "servico-social": "/social-media",
 };

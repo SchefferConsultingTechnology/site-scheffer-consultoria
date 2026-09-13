@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
-  { to: "/" as const, hash: "servicos", label: "Serviços" },
-  { to: "/sobre" as const, hash: undefined, label: "Sobre" },
-  { to: "/processo" as const, hash: undefined, label: "Metodologia" },
-  { to: "/contato" as const, hash: undefined, label: "Contato" },
+  { to: "/" as const, hash: "services", label: "Serviços" },
+  { to: "/about" as const, hash: undefined, label: "Sobre" },
+  { to: "/methodology" as const, hash: undefined, label: "Metodologia" },
+  { to: "/contact" as const, hash: undefined, label: "Contato" },
 ];
 
 export function MobileNav() {

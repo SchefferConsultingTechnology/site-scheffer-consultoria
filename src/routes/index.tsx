@@ -70,13 +70,13 @@ function Home() {
             </p>
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link
-                to="/contato"
+                to="/contact"
                 className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:translate-y-[-1px] sm:w-auto"
               >
                 Começar um projeto <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href="#servicos"
+                href="#services"
                 className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-border bg-surface/40 px-6 text-sm font-medium text-foreground backdrop-blur transition hover:bg-surface sm:w-auto"
               >
                 Ver serviços
@@ -124,7 +124,7 @@ function Home() {
       </section>
 
       {/* SERVICES */}
-      <section id="servicos" className="relative border-t border-border/60 py-24">
+      <section id="services" className="relative border-t border-border/60 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-2xl">
@@ -184,7 +184,7 @@ function Home() {
             renovada e um processo de trabalho transparente.
           </p>
           <Link
-            to="/sobre"
+            to="/about"
             className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
           >
             Conheça a Scheffer Consultoria <ArrowRight className="h-3.5 w-3.5" />
@@ -208,7 +208,7 @@ function Home() {
                 começar.
               </p>
               <Link
-                to="/contato"
+                to="/contact"
                 className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90"
               >
                 Falar com a gente <ArrowRight className="h-4 w-4" />

@@ -4,9 +4,9 @@ import { ArrowLeft } from "lucide-react";
 import logo from "@/assets/logo.webp";
 import { SITE_URL } from "@/lib/site-config";
 
-const PAGE_URL = `${SITE_URL}/politica-de-privacidade`;
+const PAGE_URL = `${SITE_URL}/privacy-policy`;
 
-export const Route = createFileRoute("/politica-de-privacidade")({
+export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     links: [{ rel: "canonical", href: PAGE_URL }],
     meta: [
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/politica-de-privacidade")({
       { name: "robots", content: "noindex" },
     ],
   }),
-  component: PoliticaDePrivacidade,
+  component: PrivacyPolicy,
 });
 
 const LAST_UPDATED = "25 de agosto de 2026";
@@ -175,7 +175,7 @@ const sections = [
   },
 ];
 
-function PoliticaDePrivacidade() {
+function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">

@@ -34,7 +34,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} Scheffer Consultoria. Todos os direitos reservados.
           </p>
           <Link
-            to="/politica-de-privacidade"
+            to="/privacy-policy"
             className="text-xs text-muted-foreground underline-offset-4 transition hover:text-foreground hover:underline"
           >
             Política de Privacidade
@@ -56,7 +56,7 @@ export function SiteFooter() {
               </a>
             );
           })}
-          <Link to="/contato" aria-label="Contato" className="transition hover:text-foreground">
+          <Link to="/contact" aria-label="Contato" className="transition hover:text-foreground">
             <Mail className="h-4 w-4" />
           </Link>
         </div>

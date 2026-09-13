@@ -4,12 +4,12 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SITE_URL } from "@/lib/site-config";
 
-const PAGE_URL = `${SITE_URL}/sobre`;
+const PAGE_URL = `${SITE_URL}/about`;
 const TITLE = "Sobre — Scheffer Consultoria";
 const DESCRIPTION =
   "Conheça a Scheffer Consultoria: três décadas de experiência em desenvolvimento de aplicações e uma década em marketing digital, com identidade renovada e processo transparente.";
 
-export const Route = createFileRoute("/sobre")({
+export const Route = createFileRoute("/about")({
   head: () => ({
     links: [{ rel: "canonical", href: PAGE_URL }],
     meta: [
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/sobre")({
       { name: "twitter:description", content: DESCRIPTION },
     ],
   }),
-  component: Sobre,
+  component: About,
 });
 
 const ABOUT_ITEMS = [
@@ -32,7 +32,7 @@ const ABOUT_ITEMS = [
   "Relatórios e transparência mensal",
 ];
 
-function Sobre() {
+function About() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

@@ -7,12 +7,12 @@ import { ContactForm } from "@/components/contact-form";
 import { openCalModal } from "@/lib/open-cal-modal";
 import { SITE_URL } from "@/lib/site-config";
 
-const PAGE_URL = `${SITE_URL}/contato`;
+const PAGE_URL = `${SITE_URL}/contact`;
 const TITLE = "Contato — Scheffer Consultoria";
 const DESCRIPTION =
   "Fale com a Scheffer Consultoria: conte seu projeto e receba um caminho claro para começar, com resposta em até 24 horas.";
 
-export const Route = createFileRoute("/contato")({
+export const Route = createFileRoute("/contact")({
   head: () => ({
     links: [{ rel: "canonical", href: PAGE_URL }],
     meta: [
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/contato")({
       { name: "twitter:description", content: DESCRIPTION },
     ],
   }),
-  component: Contato,
+  component: Contact,
 });
 
 const WHATSAPP_NUMBER = "5548999040445";
@@ -39,7 +39,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-function Contato() {
+function Contact() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

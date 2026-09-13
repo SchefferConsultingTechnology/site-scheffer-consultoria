@@ -7,13 +7,13 @@ import { services } from "@/lib/services-data";
 import { buildServiceStructuredData } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site-config";
 
-const service = services.find((s) => s.path === "/marketing-digital")!;
+const service = services.find((s) => s.path === "/digital-marketing")!;
 const TITLE = "Marketing Digital — Scheffer Consultoria";
 const DESCRIPTION =
   "Estratégia, tráfego pago e SEO para transformar cliques em clientes. Campanhas de performance com metas claras de retorno.";
-const OG_IMAGE = `${SITE_URL}/og-marketing-digital.png`;
+const OG_IMAGE = `${SITE_URL}/og-digital-marketing.png`;
 
-export const Route = createFileRoute("/marketing-digital")({
+export const Route = createFileRoute("/digital-marketing")({
   head: () => ({
     links: [{ rel: "canonical", href: `${SITE_URL}${service.path}` }],
     meta: [
@@ -31,10 +31,10 @@ export const Route = createFileRoute("/marketing-digital")({
       { "script:ld+json": buildServiceStructuredData(service) },
     ],
   }),
-  component: MarketingDigital,
+  component: DigitalMarketing,
 });
 
-function MarketingDigital() {
+function DigitalMarketing() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

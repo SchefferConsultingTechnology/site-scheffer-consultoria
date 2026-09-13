@@ -7,13 +7,13 @@ import { services } from "@/lib/services-data";
 import { buildServiceStructuredData } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site-config";
 
-const service = services.find((s) => s.path === "/aplicacoes-web")!;
-const TITLE = "Aplicações Web — Scheffer Consultoria";
+const service = services.find((s) => s.path === "/mobile-apps")!;
+const TITLE = "Apps Mobile — Scheffer Consultoria";
 const DESCRIPTION =
-  "Desenvolvimento de aplicações web, dashboards e sites de alta performance sob medida. Arquitetura escalável, código próprio e foco em resultado.";
-const OG_IMAGE = `${SITE_URL}/og-aplicacoes-web.png`;
+  "Apps nativos e híbridos para iOS e Android, do MVP à publicação nas lojas. Foco em usabilidade, performance e resultado real.";
+const OG_IMAGE = `${SITE_URL}/og-mobile-apps.png`;
 
-export const Route = createFileRoute("/aplicacoes-web")({
+export const Route = createFileRoute("/mobile-apps")({
   head: () => ({
     links: [{ rel: "canonical", href: `${SITE_URL}${service.path}` }],
     meta: [
@@ -31,10 +31,10 @@ export const Route = createFileRoute("/aplicacoes-web")({
       { "script:ld+json": buildServiceStructuredData(service) },
     ],
   }),
-  component: AplicacoesWeb,
+  component: MobileApps,
 });
 
-function AplicacoesWeb() {
+function MobileApps() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
