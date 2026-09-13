@@ -56,13 +56,9 @@ export function SiteFooter() {
               </a>
             );
           })}
-          <a
-            href="mailto:contato@schefferconsultoria.com.br"
-            aria-label="E-mail"
-            className="transition hover:text-foreground"
-          >
+          <Link to="/contato" aria-label="Contato" className="transition hover:text-foreground">
             <Mail className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
