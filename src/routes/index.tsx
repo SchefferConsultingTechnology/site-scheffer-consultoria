@@ -180,8 +180,8 @@ function Home() {
             Nova por fora. Experiente por dentro.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            Mais de uma década de experiência entregando projetos de tecnologia e marketing, com uma
-            identidade renovada e um processo de trabalho transparente.
+            Três décadas desenvolvendo aplicações e uma década em marketing digital — com identidade
+            renovada e um processo de trabalho transparente.
           </p>
           <Link
             to="/sobre"

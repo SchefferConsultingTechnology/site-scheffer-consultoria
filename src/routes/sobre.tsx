@@ -7,7 +7,7 @@ import { SITE_URL } from "@/lib/site-config";
 const PAGE_URL = `${SITE_URL}/sobre`;
 const TITLE = "Sobre — Scheffer Consultoria";
 const DESCRIPTION =
-  "Conheça a Scheffer Consultoria: mais de uma década de experiência em tecnologia e marketing, com uma identidade renovada e processo transparente.";
+  "Conheça a Scheffer Consultoria: três décadas de experiência em desenvolvimento de aplicações e uma década em marketing digital, com identidade renovada e processo transparente.";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -44,9 +44,10 @@ function Sobre() {
             Experiente por dentro.
           </h1>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            A Scheffer Consultoria nasce com uma identidade renovada, mas carrega mais de uma década
-            de experiência entregando projetos de tecnologia e marketing para empresas de diversos
-            portes. Combinamos maturidade técnica com a agilidade de quem começa hoje.
+            Por trás da marca nova está uma trajetória consolidada: três décadas desenvolvendo
+            aplicações e uma década dedicada a marketing digital, aplicadas a projetos de empresas
+            de diversos portes. O resultado é a maturidade de quem já viu de tudo, com a agilidade
+            de quem constrói cada projeto como se fosse o primeiro.
           </p>
           <ul className="mt-8 grid gap-3 text-sm">
             {ABOUT_ITEMS.map((item) => (
