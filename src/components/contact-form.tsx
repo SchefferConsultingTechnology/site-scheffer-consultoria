@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import {
   buildContactSchema,
-  formatBrazilPhone,
+  formatPhoneInput,
   SERVICE_INTEREST_IDS,
   type ContactFormValues,
 } from "@/lib/contact-schema";
@@ -153,10 +153,10 @@ export function ContactForm({ locale }: { locale: Locale }) {
                 <FormControl>
                   <Input
                     type="tel"
-                    inputMode="numeric"
+                    inputMode="tel"
                     placeholder={t.phonePlaceholder}
                     {...field}
-                    onChange={(e) => field.onChange(formatBrazilPhone(e.target.value))}
+                    onChange={(e) => field.onChange(formatPhoneInput(e.target.value))}
                   />
                 </FormControl>
                 {phoneValue && (
