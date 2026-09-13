@@ -8,7 +8,7 @@ import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/com
 const navLinks = [
   { to: "/" as const, hash: "servicos", label: "Serviços" },
   { to: "/sobre" as const, hash: undefined, label: "Sobre" },
-  { to: "/processo" as const, hash: undefined, label: "Processo" },
+  { to: "/processo" as const, hash: undefined, label: "Metodologia" },
   { to: "/contato" as const, hash: undefined, label: "Contato" },
 ];
 

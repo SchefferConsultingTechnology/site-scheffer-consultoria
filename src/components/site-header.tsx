@@ -28,7 +28,7 @@ export function SiteHeader() {
             Sobre
           </Link>
           <Link to="/processo" className="transition hover:text-foreground">
-            Processo
+            Metodologia
           </Link>
           <Link to="/contato" className="transition hover:text-foreground">
             Contato

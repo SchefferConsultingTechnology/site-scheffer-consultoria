@@ -54,7 +54,7 @@ function Processo() {
       <SiteHeader />
       <section className="relative py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-accent">Processo</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-accent">Metodologia</p>
           <h1 className="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">
             Como trabalhamos
           </h1>
