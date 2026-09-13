@@ -41,6 +41,12 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   es: "Español",
 };
 
+export const LOCALE_FLAGS: Record<Locale, string> = {
+  pt: "🇧🇷",
+  en: "🇺🇸",
+  es: "🇪🇸",
+};
+
 // Maps services-data.ts's stable `id` field to its PAGE_PATHS key, so any component that has a
 // Service object (but not necessarily its own PageKey) can still resolve a locale-aware URL.
 export const SERVICE_ID_TO_PAGE_KEY: Record<string, PageKey> = {
