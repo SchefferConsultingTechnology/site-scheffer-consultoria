@@ -144,7 +144,7 @@ function Home() {
             {services.map((s) => (
               <article
                 key={s.title}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-surface p-6 transition hover:border-primary/50 hover:bg-surface-elevated"
+                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface p-6 transition hover:border-primary/50 hover:bg-surface-elevated"
               >
                 <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/10 opacity-0 blur-2xl transition group-hover:opacity-100" />
                 <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/30">
@@ -154,7 +154,7 @@ function Home() {
                 <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
                   {s.desc}
                 </p>
-                <div className="relative mt-6 flex items-center justify-between gap-2">
+                <div className="relative mt-auto flex items-center justify-between gap-2 pt-6">
                   <div className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/50 px-2.5 py-1 text-[10px] uppercase tracking-wider text-muted-foreground">
                     <Zap className="h-3 w-3 text-accent" />
                     {s.tag}
