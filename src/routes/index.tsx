@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
 
-import logo from "@/assets/logo_resumido.png";
+import logo from "@/assets/logo.webp";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { services } from "@/lib/services-data";
@@ -108,6 +108,8 @@ function Home() {
                   <img
                     src={logo}
                     alt="Logo Scheffer Consultoria"
+                    width={112}
+                    height={112}
                     className="h-28 w-28 object-contain sm:h-36 sm:w-36 lg:h-44 lg:w-44"
                   />
                 </div>

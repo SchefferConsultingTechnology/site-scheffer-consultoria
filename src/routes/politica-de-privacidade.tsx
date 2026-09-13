@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
-import logo from "@/assets/logo_resumido.png";
+import logo from "@/assets/logo.webp";
 import { SITE_URL } from "@/lib/site-config";
 
 const PAGE_URL = `${SITE_URL}/politica-de-privacidade`;
@@ -184,6 +184,8 @@ function PoliticaDePrivacidade() {
             <img
               src={logo}
               alt="Scheffer Consultoria"
+              width={44}
+              height={44}
               className="h-11 w-11 rounded-full object-cover ring-1 ring-border"
             />
             <span className="font-display text-base font-semibold tracking-tight">

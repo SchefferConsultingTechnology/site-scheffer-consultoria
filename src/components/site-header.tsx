@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import logo from "@/assets/logo_resumido.png";
+import logo from "@/assets/logo.webp";
 import { MobileNav } from "@/components/mobile-nav";
 
 export function SiteHeader() {
@@ -12,6 +12,8 @@ export function SiteHeader() {
           <img
             src={logo}
             alt="Scheffer Consultoria"
+            width={44}
+            height={44}
             className="h-11 w-11 rounded-full object-cover ring-1 ring-border"
           />
           <span className="font-display text-base font-semibold tracking-tight">
