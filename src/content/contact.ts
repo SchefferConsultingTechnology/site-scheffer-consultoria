@@ -28,6 +28,9 @@ export type ContactContent = {
     phoneChannelsAriaLabel: string;
     whatsappChannelLabel: string;
     telegramChannelLabel: string;
+    countrySelectorLabel: string;
+    countrySelectorSearchPlaceholder: string;
+    countrySelectorNoResults: string;
     companyLabel: string;
     companyPlaceholder: string;
     messageLabel: string;
@@ -87,10 +90,13 @@ export const contactContent: Record<Locale, ContactContent> = {
         other: "Outros assuntos",
       },
       phoneLabel: "Telefone (opcional)",
-      phonePlaceholder: "+55 48 99999-9999",
+      phonePlaceholder: "48 99999-9999",
       phoneChannelsAriaLabel: "Esse telefone é WhatsApp ou Telegram?",
       whatsappChannelLabel: "WhatsApp",
       telegramChannelLabel: "Telegram",
+      countrySelectorLabel: "País",
+      countrySelectorSearchPlaceholder: "Buscar país ou código",
+      countrySelectorNoResults: "Nenhum país encontrado.",
       companyLabel: "Empresa (opcional)",
       companyPlaceholder: "Nome da empresa",
       messageLabel: "Mensagem",
@@ -99,7 +105,7 @@ export const contactContent: Record<Locale, ContactContent> = {
       validation: {
         nameRequired: "Informe seu nome completo.",
         emailInvalid: "Informe um e-mail válido.",
-        phoneInvalid: "Informe um telefone válido, com código do país (ex.: +55 48 99999-9999).",
+        phoneInvalid: "Informe um número de telefone válido.",
         messageTooShort: "Conte um pouco mais sobre o seu projeto.",
         messageTooLong: "Mensagem muito longa.",
       },
@@ -149,10 +155,13 @@ export const contactContent: Record<Locale, ContactContent> = {
         other: "Other topics",
       },
       phoneLabel: "Phone (optional)",
-      phonePlaceholder: "+1 555 123 4567",
+      phonePlaceholder: "555 123 4567",
       phoneChannelsAriaLabel: "Is this number WhatsApp or Telegram?",
       whatsappChannelLabel: "WhatsApp",
       telegramChannelLabel: "Telegram",
+      countrySelectorLabel: "Country",
+      countrySelectorSearchPlaceholder: "Search country or code",
+      countrySelectorNoResults: "No country found.",
       companyLabel: "Company (optional)",
       companyPlaceholder: "Company name",
       messageLabel: "Message",
@@ -161,7 +170,7 @@ export const contactContent: Record<Locale, ContactContent> = {
       validation: {
         nameRequired: "Please enter your full name.",
         emailInvalid: "Please enter a valid email address.",
-        phoneInvalid: "Please enter a valid phone number with country code (e.g. +1 555 123 4567).",
+        phoneInvalid: "Please enter a valid phone number.",
         messageTooShort: "Tell us a bit more about your project.",
         messageTooLong: "Message is too long.",
       },
@@ -211,10 +220,13 @@ export const contactContent: Record<Locale, ContactContent> = {
         other: "Otros temas",
       },
       phoneLabel: "Teléfono (opcional)",
-      phonePlaceholder: "+34 612 345 678",
+      phonePlaceholder: "612 345 678",
       phoneChannelsAriaLabel: "¿Este número es WhatsApp o Telegram?",
       whatsappChannelLabel: "WhatsApp",
       telegramChannelLabel: "Telegram",
+      countrySelectorLabel: "País",
+      countrySelectorSearchPlaceholder: "Buscar país o código",
+      countrySelectorNoResults: "No se encontró ningún país.",
       companyLabel: "Empresa (opcional)",
       companyPlaceholder: "Nombre de la empresa",
       messageLabel: "Mensaje",
@@ -223,8 +235,7 @@ export const contactContent: Record<Locale, ContactContent> = {
       validation: {
         nameRequired: "Ingresa tu nombre completo.",
         emailInvalid: "Ingresa un correo electrónico válido.",
-        phoneInvalid:
-          "Ingresa un número de teléfono válido, con código de país (ej.: +34 612 345 678).",
+        phoneInvalid: "Ingresa un número de teléfono válido.",
         messageTooShort: "Cuéntanos un poco más sobre tu proyecto.",
         messageTooLong: "El mensaje es demasiado largo.",
       },

@@ -15,12 +15,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { CountryCodeSelect } from "@/components/country-code-select";
 import {
   buildContactSchema,
-  formatPhoneInput,
+  buildE164Phone,
+  sanitizeNationalNumber,
   SERVICE_INTEREST_IDS,
   type ContactFormValues,
 } from "@/lib/contact-schema";
+import { COUNTRY_CODES, DEFAULT_COUNTRY_ISO2 } from "@/lib/country-codes";
 import { sendContactEmail } from "@/lib/send-contact-email.server";
 import { contactContent } from "@/content/contact";
 import type { Locale } from "@/content/locale";
@@ -30,6 +33,8 @@ type Status = "idle" | "submitting" | "success" | "error";
 export function ContactForm({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<Status>("idle");
   const renderedAt = useState(() => Date.now())[0];
+  const [countryIso2, setCountryIso2] = useState(DEFAULT_COUNTRY_ISO2[locale]);
+  const [nationalNumber, setNationalNumber] = useState("");
   const t = contactContent[locale].form;
   const pageT = contactContent[locale].page;
 
@@ -50,6 +55,12 @@ export function ContactForm({ locale }: { locale: Locale }) {
   });
 
   const phoneValue = form.watch("phone");
+  const dialCode = COUNTRY_CODES.find((country) => country.iso2 === countryIso2)?.dialCode ?? "";
+
+  function syncPhone(nextIso2: string, nextNumber: string) {
+    const nextDialCode = COUNTRY_CODES.find((country) => country.iso2 === nextIso2)?.dialCode ?? "";
+    form.setValue("phone", buildE164Phone(nextDialCode, nextNumber), { shouldValidate: true });
+  }
 
   async function onSubmit(values: ContactFormValues) {
     setStatus("submitting");
@@ -147,17 +158,35 @@ export function ContactForm({ locale }: { locale: Locale }) {
           <FormField
             control={form.control}
             name="phone"
-            render={({ field }) => (
+            render={() => (
               <FormItem>
                 <FormLabel>{t.phoneLabel}</FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    inputMode="tel"
-                    placeholder={t.phonePlaceholder}
-                    {...field}
-                    onChange={(e) => field.onChange(formatPhoneInput(e.target.value))}
-                  />
+                  <div className="flex gap-2">
+                    <CountryCodeSelect
+                      value={countryIso2}
+                      onChange={(iso2) => {
+                        setCountryIso2(iso2);
+                        syncPhone(iso2, nationalNumber);
+                      }}
+                      locale={locale}
+                      triggerAriaLabel={t.countrySelectorLabel}
+                      searchPlaceholder={t.countrySelectorSearchPlaceholder}
+                      noResultsLabel={t.countrySelectorNoResults}
+                    />
+                    <Input
+                      type="tel"
+                      inputMode="numeric"
+                      placeholder={t.phonePlaceholder}
+                      value={nationalNumber}
+                      onChange={(e) => {
+                        const digits = sanitizeNationalNumber(e.target.value, 15 - dialCode.length);
+                        setNationalNumber(digits);
+                        syncPhone(countryIso2, digits);
+                      }}
+                      className="flex-1"
+                    />
+                  </div>
                 </FormControl>
                 {phoneValue && (
                   <FormField

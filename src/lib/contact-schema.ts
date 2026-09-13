@@ -5,17 +5,21 @@ import { LOCALES, type Locale } from "@/content/locale";
 
 // E.164: a leading "+", then the country code and subscriber number as digits only, 8-15 digits
 // total, no leading 0 after the "+" (spec 005-i18n-structure made phone entry international, so
-// a bare local number is no longer assumed to be Brazilian — the visitor must supply their own
-// country code).
+// a bare local number is no longer assumed to be Brazilian — the visitor picks their own country
+// from a selector instead of typing the country code by hand).
 const E164_PATTERN = /^\+[1-9]\d{7,14}$/;
 
-// Strips everything but a single leading "+" and digits, so the stored/validated value is always
-// E.164-shaped while the visitor types.
-export function formatPhoneInput(value: string) {
-  const hasPlus = value.trimStart().startsWith("+");
-  const digits = value.replace(/\D/g, "").slice(0, 15);
-  if (!digits) return hasPlus ? "+" : "";
-  return hasPlus ? `+${digits}` : digits;
+// Keeps only digits from the national-number input, capped to whatever's left of E.164's 15-digit
+// budget once the selected country's dial code is accounted for.
+export function sanitizeNationalNumber(value: string, maxDigits: number) {
+  return value.replace(/\D/g, "").slice(0, Math.max(maxDigits, 0));
+}
+
+// Combines a country's dial code with the visitor-entered national number into a single E.164
+// string; returns "" when there's no number yet, so the field stays optional.
+export function buildE164Phone(dialCode: string, nationalNumber: string) {
+  const digits = nationalNumber.replace(/\D/g, "");
+  return digits ? `+${dialCode}${digits}` : "";
 }
 
 export const PHONE_CHANNELS = ["whatsapp", "telegram"] as const;
