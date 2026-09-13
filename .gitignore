@@ -33,3 +33,6 @@ dist-ssr
 
 # Claude Code local settings (may contain local permissions/credentials)
 .claude/settings.local.json
+
+# Cline local rules (per-machine tool config, not project config)
+.clinerules
