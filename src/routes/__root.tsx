@@ -71,6 +71,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+// Both optional — unset until the business has Search Console / GA4 accounts configured
+// (specs/004-seo-improvements). Never hardcode a real value here; set them as Worker vars /
+// `.dev.vars` instead, same as RESEND_API_KEY.
+const GSC_VERIFICATION = process.env.PUBLIC_GSC_VERIFICATION;
+const GA_MEASUREMENT_ID = process.env.PUBLIC_GA_MEASUREMENT_ID;
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -93,8 +99,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
       { property: "og:image", content: SITE_OG_IMAGE },
+      { property: "og:image:width", content: "1995" },
+      { property: "og:image:height", content: "1995" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: SITE_OG_IMAGE },
+      { name: "twitter:title", content: "Scheffer Consultoria" },
+      {
+        name: "twitter:description",
+        content: "Soluções tecnológicas, web, mobile, marketing digital e social media.",
+      },
+      ...(GSC_VERIFICATION
+        ? [{ name: "google-site-verification", content: GSC_VERIFICATION }]
+        : []),
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -105,7 +121,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
     ],
+    scripts: GA_MEASUREMENT_ID
+      ? [
+          { src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`, async: true },
+          {
+            children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');`,
+          },
+        ]
+      : [],
   }),
   shellComponent: RootShell,
   component: RootComponent,

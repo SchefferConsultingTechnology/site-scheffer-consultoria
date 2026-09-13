@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://schefferconsultoria.com.br/sitemap.xml
+Sitemap: https://scheffer.solutions/sitemap.xml

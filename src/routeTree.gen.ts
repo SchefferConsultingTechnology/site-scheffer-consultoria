@@ -9,12 +9,54 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SocialMediaRouteImport } from './routes/social-media'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as ProcessoRouteImport } from './routes/processo'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as MarketingDigitalRouteImport } from './routes/marketing-digital'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as AppsMobileRouteImport } from './routes/apps-mobile'
+import { Route as AplicacoesWebRouteImport } from './routes/aplicacoes-web'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SocialMediaRoute = SocialMediaRouteImport.update({
+  id: '/social-media',
+  path: '/social-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessoRoute = ProcessoRouteImport.update({
+  id: '/processo',
+  path: '/processo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   id: '/politica-de-privacidade',
   path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketingDigitalRoute = MarketingDigitalRouteImport.update({
+  id: '/marketing-digital',
+  path: '/marketing-digital',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppsMobileRoute = AppsMobileRouteImport.update({
+  id: '/apps-mobile',
+  path: '/apps-mobile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AplicacoesWebRoute = AplicacoesWebRouteImport.update({
+  id: '/aplicacoes-web',
+  path: '/aplicacoes-web',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +67,142 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aplicacoes-web': typeof AplicacoesWebRoute
+  '/apps-mobile': typeof AppsMobileRoute
+  '/contato': typeof ContatoRoute
+  '/marketing-digital': typeof MarketingDigitalRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/processo': typeof ProcessoRoute
+  '/sobre': typeof SobreRoute
+  '/social-media': typeof SocialMediaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aplicacoes-web': typeof AplicacoesWebRoute
+  '/apps-mobile': typeof AppsMobileRoute
+  '/contato': typeof ContatoRoute
+  '/marketing-digital': typeof MarketingDigitalRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/processo': typeof ProcessoRoute
+  '/sobre': typeof SobreRoute
+  '/social-media': typeof SocialMediaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aplicacoes-web': typeof AplicacoesWebRoute
+  '/apps-mobile': typeof AppsMobileRoute
+  '/contato': typeof ContatoRoute
+  '/marketing-digital': typeof MarketingDigitalRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/processo': typeof ProcessoRoute
+  '/sobre': typeof SobreRoute
+  '/social-media': typeof SocialMediaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/politica-de-privacidade'
+  fullPaths:
+    | '/'
+    | '/aplicacoes-web'
+    | '/apps-mobile'
+    | '/contato'
+    | '/marketing-digital'
+    | '/politica-de-privacidade'
+    | '/processo'
+    | '/sobre'
+    | '/social-media'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/politica-de-privacidade'
-  id: '__root__' | '/' | '/politica-de-privacidade'
+  to:
+    | '/'
+    | '/aplicacoes-web'
+    | '/apps-mobile'
+    | '/contato'
+    | '/marketing-digital'
+    | '/politica-de-privacidade'
+    | '/processo'
+    | '/sobre'
+    | '/social-media'
+  id:
+    | '__root__'
+    | '/'
+    | '/aplicacoes-web'
+    | '/apps-mobile'
+    | '/contato'
+    | '/marketing-digital'
+    | '/politica-de-privacidade'
+    | '/processo'
+    | '/sobre'
+    | '/social-media'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AplicacoesWebRoute: typeof AplicacoesWebRoute
+  AppsMobileRoute: typeof AppsMobileRoute
+  ContatoRoute: typeof ContatoRoute
+  MarketingDigitalRoute: typeof MarketingDigitalRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  ProcessoRoute: typeof ProcessoRoute
+  SobreRoute: typeof SobreRoute
+  SocialMediaRoute: typeof SocialMediaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/social-media': {
+      id: '/social-media'
+      path: '/social-media'
+      fullPath: '/social-media'
+      preLoaderRoute: typeof SocialMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/processo': {
+      id: '/processo'
+      path: '/processo'
+      fullPath: '/processo'
+      preLoaderRoute: typeof ProcessoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/politica-de-privacidade': {
       id: '/politica-de-privacidade'
       path: '/politica-de-privacidade'
       fullPath: '/politica-de-privacidade'
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketing-digital': {
+      id: '/marketing-digital'
+      path: '/marketing-digital'
+      fullPath: '/marketing-digital'
+      preLoaderRoute: typeof MarketingDigitalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apps-mobile': {
+      id: '/apps-mobile'
+      path: '/apps-mobile'
+      fullPath: '/apps-mobile'
+      preLoaderRoute: typeof AppsMobileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aplicacoes-web': {
+      id: '/aplicacoes-web'
+      path: '/aplicacoes-web'
+      fullPath: '/aplicacoes-web'
+      preLoaderRoute: typeof AplicacoesWebRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +217,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AplicacoesWebRoute: AplicacoesWebRoute,
+  AppsMobileRoute: AppsMobileRoute,
+  ContatoRoute: ContatoRoute,
+  MarketingDigitalRoute: MarketingDigitalRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  ProcessoRoute: ProcessoRoute,
+  SobreRoute: SobreRoute,
+  SocialMediaRoute: SocialMediaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

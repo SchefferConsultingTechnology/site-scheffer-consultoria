@@ -102,6 +102,11 @@
     border-color: var(--color-border);
   }
 
+  html {
+    /* Offsets #anchor jumps so the sticky header (h-16) doesn't cover the target's top. */
+    scroll-padding-top: 4.5rem;
+  }
+
   html,
   body {
     background-color: var(--color-background);

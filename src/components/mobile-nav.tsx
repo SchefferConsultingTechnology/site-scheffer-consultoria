@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "#servicos", label: "Serviços" },
-  { href: "#sobre", label: "Sobre" },
-  { href: "#processo", label: "Processo" },
-  { href: "#contato", label: "Contato" },
+  { to: "/" as const, hash: "servicos", label: "Serviços" },
+  { to: "/sobre" as const, hash: undefined, label: "Sobre" },
+  { to: "/processo" as const, hash: undefined, label: "Processo" },
+  { to: "/contato" as const, hash: undefined, label: "Contato" },
 ];
 
 export function MobileNav() {
@@ -31,13 +32,14 @@ export function MobileNav() {
         <SheetTitle className="font-display">Menu</SheetTitle>
         <nav className="mt-8 flex flex-col gap-1">
           {navLinks.map((link) => (
-            <SheetClose asChild key={link.href}>
-              <a
-                href={link.href}
+            <SheetClose asChild key={link.to + (link.hash ?? "")}>
+              <Link
+                to={link.to}
+                hash={link.hash}
                 className="rounded-lg px-3 py-3 text-base font-medium text-foreground transition hover:bg-surface-elevated"
               >
                 {link.label}
-              </a>
+              </Link>
             </SheetClose>
           ))}
         </nav>

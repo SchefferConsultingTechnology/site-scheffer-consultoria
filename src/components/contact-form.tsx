@@ -6,6 +6,7 @@ import { Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   Form,
   FormControl,
@@ -14,7 +15,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { contactSchema, type ContactFormValues } from "@/lib/contact-schema";
+import {
+  contactSchema,
+  formatBrazilPhone,
+  SERVICE_INTERESTS,
+  type ContactFormValues,
+} from "@/lib/contact-schema";
 import { sendContactEmail } from "@/lib/send-contact-email.server";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -29,12 +35,16 @@ export function ContactForm() {
       name: "",
       email: "",
       phone: "",
+      phoneChannels: [],
+      interests: [],
       company: "",
       message: "",
       honeypot: "",
       renderedAt,
     },
   });
+
+  const phoneValue = form.watch("phone");
 
   async function onSubmit(values: ContactFormValues) {
     setStatus("submitting");
@@ -100,6 +110,34 @@ export function ContactForm() {
           />
         </div>
 
+        <FormField
+          control={form.control}
+          name="interests"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Assunto (opcional, selecione um ou mais)</FormLabel>
+              <FormControl>
+                <ToggleGroup
+                  type="multiple"
+                  variant="outline"
+                  size="sm"
+                  value={field.value}
+                  onValueChange={field.onChange}
+                  className="flex-wrap justify-start"
+                  aria-label="Sobre o que você quer falar?"
+                >
+                  {SERVICE_INTERESTS.map((interest) => (
+                    <ToggleGroupItem key={interest.id} value={interest.id}>
+                      {interest.label}
+                    </ToggleGroupItem>
+                  ))}
+                </ToggleGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <div className="grid gap-4 sm:grid-cols-2">
           <FormField
             control={form.control}
@@ -108,8 +146,38 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Telefone (opcional)</FormLabel>
                 <FormControl>
-                  <Input type="tel" placeholder="(00) 00000-0000" {...field} />
+                  <Input
+                    type="tel"
+                    inputMode="numeric"
+                    placeholder="(00) 00000-0000"
+                    {...field}
+                    onChange={(e) => field.onChange(formatBrazilPhone(e.target.value))}
+                  />
                 </FormControl>
+                {phoneValue && (
+                  <FormField
+                    control={form.control}
+                    name="phoneChannels"
+                    render={({ field: channelsField }) => (
+                      <ToggleGroup
+                        type="multiple"
+                        variant="outline"
+                        size="sm"
+                        value={channelsField.value}
+                        onValueChange={channelsField.onChange}
+                        className="justify-start"
+                        aria-label="Esse telefone é WhatsApp ou Telegram?"
+                      >
+                        <ToggleGroupItem value="whatsapp" aria-label="É WhatsApp">
+                          WhatsApp
+                        </ToggleGroupItem>
+                        <ToggleGroupItem value="telegram" aria-label="É Telegram">
+                          Telegram
+                        </ToggleGroupItem>
+                      </ToggleGroup>
+                    )}
+                  />
+                )}
                 <FormMessage />
               </FormItem>
             )}
